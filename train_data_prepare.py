@@ -25,13 +25,14 @@ postagger.load(pos_model_path)  # 加载模型
 parser = Parser()  # 初始化实例
 parser.load(par_model_path)  # 加载模型
 
-def cht_to_chs(line):
+
+def cht_to_chs(line):   # 转换繁体到简体
     line = Converter('zh-hans').convert(line)
     line.encode('utf-8')
     return line
 
 
-def loadData():  #加载训练数据
+def load_data():  # 加载训练数据
     words = []
     labWs = []
     labCs = []
@@ -182,7 +183,7 @@ def embedding_sentences(sentences):
     return w2vec
 
 
-words, labWs, labCs, labEs = loadData()
+words, labWs, labCs, labEs = load_data()
 # 得到基于字的词性标注、句法分析、标签
 dataList, labelList, parserList, postagList = data_prepare(words, labWs, labCs, labEs)
 # 写入txt
