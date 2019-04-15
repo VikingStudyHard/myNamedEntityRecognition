@@ -63,7 +63,7 @@ def compare():
     result = num / row
     print('result:' + str(result))
 
-                                                                                                                                                                                                                                                                                                                                        
+
 compare()
 # result:0.8936241610738255
 # result:0.8946308724832215
