@@ -9,12 +9,13 @@ import pandas as pd
 import sys
 
 
-from test import predict
+from predict import predict
 import Levenshtein
 
 
 def compare():
     ExcelFile = pd.read_excel('./RESULT.xlsx', header=None, index=None).fillna(0)
+    #ExcelFile = pd.read_excel('./ResultTest.xlsx', header=None, index=None).fillna(0)
     y = np.array(ExcelFile.values)
     row = y.shape[0]
     num = 0
@@ -23,10 +24,10 @@ def compare():
     j = 0
     for i in range(0, row):
         print("row:"+str(i))
-        resultAction, resultTarget, resultData = predict(y[i, 0])
-        initAcion = str(y[i, 1]).replace("，", "").replace(",","")
-        initTarget = str(y[i, 2]).replace("，", "").replace(",","")
-        initData = str(y[i, 3]).replace("，", "")
+        resultAction, resultTarget, resultData = predict(str(y[i, 0]).replace('\t', ''))
+        initAcion = str(y[i, 1]).replace("，", "").replace(",","").replace('\t', '')
+        initTarget = str(y[i, 2]).replace("，", "").replace(",","").replace('\t', '')
+        initData = str(y[i, 3]).replace("，", "").replace('\t', '')
 
         resultAction = str(resultAction).split('***')[0]
         resultTarget = str(resultTarget).replace('***', '').replace("和","").replace("、","")
@@ -62,6 +63,7 @@ def compare():
     result = num / row
     print('result:' + str(result))
 
-
+                                                                                                                                                                                                                                                                                                                                        
 compare()
 # result:0.8936241610738255
+# result:0.8946308724832215

@@ -12,15 +12,7 @@ cws_model_path = os.path.join(LTP_DATA_DIR, 'cws.model')  # 分词
 pos_model_path = os.path.join(LTP_DATA_DIR, 'pos.model')  # 词性标注模型路径，模型名称为`pos.model`
 
 
-segmentor = Segmentor()  # 初始化实例
-segmentor.load(cws_model_path)  # 加载模型
 
-
-postagger = Postagger()  # 初始化实例
-postagger.load(pos_model_path)  # 加载模型
-
-parser = Parser()  # 初始化实例
-parser.load(par_model_path)  # 加载模型
 
 
 def cht_to_chs(line):
@@ -38,6 +30,15 @@ def load_data(word):
 
 
 def data_prepare(words):
+    segmentor = Segmentor()  # 初始化实例
+    segmentor.load(cws_model_path)  # 加载模型
+
+    postagger = Postagger()  # 初始化实例
+    postagger.load(pos_model_path)  # 加载模型
+
+    parser = Parser()  # 初始化实例
+    parser.load(par_model_path)  # 加载模型
+
     dataList = []
     postagList = []
     parserList = []

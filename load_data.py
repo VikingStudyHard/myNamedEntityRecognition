@@ -81,5 +81,4 @@ def init_data(path, feature_names, vocs, max_len, model='train', sep=' '):
             data_dict['label'][index, :] = map_item2id(
                 one_instance_items[-1], vocs[-1], max_len)
     file_r.close()
-
     return data_dict

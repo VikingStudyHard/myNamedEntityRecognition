@@ -1,0 +1,18 @@
+再	d	ADV	
+选	v	HED	
+择	v	HED	
+某	r	ATT	
+一	m	ADV	
+比	p	ADV	
+开	v	ATT	
+始	v	ATT	
+时	n	POB	
+间	n	POB	
+更	d	ADV	
+早	a	ADV	
+的	u	RAD	
+结	v	COO	
+束	v	COO	
+时	n	VOB	
+间	n	VOB	
+

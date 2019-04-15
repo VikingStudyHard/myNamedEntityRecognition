@@ -16,8 +16,10 @@ par_model_path = os.path.join(LTP_DATA_DIR, 'parser.model')  # 依存句法分�
 cws_model_path = os.path.join(LTP_DATA_DIR, 'cws.model')  # 分词
 pos_model_path = os.path.join(LTP_DATA_DIR, 'pos.model')  # 词性标注模型路径，模型名称为`pos.model`
 
+
 segmentor = Segmentor()  # 初始化实例
 segmentor.load(cws_model_path)  # 加载模型
+
 
 postagger = Postagger()  # 初始化实例
 postagger.load(pos_model_path)  # 加载模型
@@ -114,12 +116,12 @@ def data_prepare(words, labWs, labCs, labEs): # 获取人工标注
         for arc in arcs:
             parser_list.append(arc.relation)
 
-        for s in range(len(postag_list)): # 词性标注到每个字上
+        for s in range(len(postag_list)):  # 词性标注到每个字上
             for t in range(len(word_list[s])):
                 sequence_postag.append(postag_list[s])
         postagList.append(sequence_postag)
 
-        for s in range(len(parser_list)): # 句法分析标注到每个字上
+        for s in range(len(parser_list)):  # 句法分析标注到每个字上
             for t in range(len(word_list[s])):
                 sequence_parser.append(parser_list[s])
         parserList.append(sequence_parser)

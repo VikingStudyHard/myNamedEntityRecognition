@@ -136,6 +136,7 @@ class SequenceLabelingModel(object):
             bw_cell = rnn.GRUCell(self.nb_hidden)
         else:
             raise ValueError('rnn_unit must in (lstm, gru)!')
+
         # 计算self.input_features[feature_names[0]]的实际长度(0为padding值)
         self.sequence_actual_length = get_sequence_actual_length(  # 每个句子的实际长度
             self.input_feature_ph_dict[self.feature_names[0]])

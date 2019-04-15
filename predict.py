@@ -80,9 +80,9 @@ def predict(string):
                     tem += lab[i][j]
                 if seq[i][j] == 10:
                     choiceAction.append(lab[i][j])
-            if len(tem) >0:
+            if len(tem) > 0:
                 choiceAction.append(tem)
-    ch = '***'.join(choiceAction.ceAction)
+    ch = '***'.join(choiceAction)
     finalAction = '' + ch
     if finalAction == '':
         finalAction = '0'
@@ -115,3 +115,6 @@ def predict(string):
     if finalData == '':
         finalData = '0'
     return finalAction, finalTarget, finalData
+#
+# resultp, resultt, da = predict('其他各项为默认值')
+# print(resultp, resultt, da)
