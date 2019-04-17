@@ -112,3 +112,6 @@ def writetxt(string):
     word, postag, parser = data_prepare(lab)
     write(word, postag, parser)
     return lab
+
+
+# writetxt('在变更后MDS名称中填写MBRASSY-FRSIDERH')

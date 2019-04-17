@@ -115,6 +115,7 @@ def predict(string):
     if finalData == '':
         finalData = '0'
     return finalAction, finalTarget, finalData
-#
-# resultp, resultt, da = predict('其他各项为默认值')
-# print(resultp, resultt, da)
+
+
+#resultp, resultt, da = predict('在变更后MDS名称中填写MBRASSY-FRSIDERH')
+#print(resultp, resultt, da)

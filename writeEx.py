@@ -14,8 +14,8 @@ import Levenshtein
 
 
 def compare():
-    ExcelFile = pd.read_excel('./RESULT.xlsx', header=None, index=None).fillna(0)
-    #ExcelFile = pd.read_excel('./ResultTest.xlsx', header=None, index=None).fillna(0)
+    #ExcelFile = pd.read_excel('./RESULT.xlsx', header=None, index=None).fillna(0)
+    ExcelFile = pd.read_excel('./ResultTest.xlsx', header=None, index=None).fillna(0)
     y = np.array(ExcelFile.values)
     row = y.shape[0]
     num = 0
@@ -25,27 +25,29 @@ def compare():
     for i in range(0, row):
         print("row:"+str(i))
         resultAction, resultTarget, resultData = predict(str(y[i, 0]).replace('\t', ''))
-        initAcion = str(y[i, 1]).replace("，", "").replace(",","").replace('\t', '')
-        initTarget = str(y[i, 2]).replace("，", "").replace(",","").replace('\t', '')
-        initData = str(y[i, 3]).replace("，", "").replace('\t', '')
-
+        initAction = str(y[i, 1]).replace("，", "").replace(",","").replace('\t', '').strip()
+        initTarget = str(y[i, 2]).replace("，", "").replace(",","").replace('\t', '').strip()
+        if len(str(y[i, 3])) > 0:
+            initData = str(y[i, 3]).replace("，", "").replace('\t', '').strip()
+        else:
+            initData = str(y[i, 3])
         resultAction = str(resultAction).split('***')[0]
         resultTarget = str(resultTarget).replace('***', '').replace("和","").replace("、","")
         resultData = "".join(resultData).replace('***', '')
 
-        Aratio = Levenshtein.ratio(initAcion, str(resultAction))
+        Aratio = Levenshtein.ratio(initAction, str(resultAction))
         Tratio = Levenshtein.ratio(initTarget, str(resultTarget))
         Dratio = Levenshtein.ratio(initData, str(resultData))
         # print(Aratio, Tratio)
 
-        if ((resultAction in initAcion) or (initAcion in resultAction )) and (resultTarget in initTarget):
+        if ((resultAction in initAction) or (initAction in resultAction)) and (resultTarget in initTarget):
             num = num + 1
             line = ''.join(
-                str(y[i, 0]) + '\n' + 'action:' + initAcion + '\t' + 'pAction:' + str(resultAction) + '\t' + str(
+                str(y[i, 0]) + '\n' + 'action:' + initAction + '\t' + 'pAction:' + str(resultAction) + '\t' + str(
                     Aratio) + '\n' + 'target:' + initTarget + '\t' + 'pTarget:' + str(resultTarget) + '\t' + str(
                     Tratio) + '\n' + 'data:' + initData + '\t' + 'pData:' + str(resultData) + '\t' + str(Dratio)) + '\n'
             sheet.write(j, 0, str(y[i, 0]))
-            sheet.write(j, 1, initAcion)
+            sheet.write(j, 1, initAction)
             sheet.write(j, 2, str(resultAction))
             sheet.write(j, 3, str(Aratio))
             j += 1
@@ -66,4 +68,5 @@ def compare():
 
 compare()
 # result:0.8936241610738255
+# result:0.8946308724832215
 # result:0.8946308724832215
